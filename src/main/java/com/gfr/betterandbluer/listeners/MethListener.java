@@ -9,8 +9,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+
 
 public class MethListener implements Listener {
     private final JavaPlugin plugin;
@@ -58,6 +60,29 @@ public class MethListener implements Listener {
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void onEat(PlayerItemConsumeEvent e){
+
+        System.out.println("If this works then lammy's gay");
+        Player player = e.getPlayer();
+        ItemStack eatitem = player.getInventory().getItemInMainHand();
+
+        // - idk dawg test -
+        if(eatitem.getType() == Material.TROPICAL_FISH){
+            e.setCancelled(true);
+            eatitem.setAmount(eatitem.getAmount() -1);
+            if (eatitem.getAmount() <= 0) {
+                player.getInventory().setItemInMainHand(itemManager.create("fish_bone"));
+            }
+
+            else {
+                player.give(itemManager.create("fish_bone"));
+            }
+        }
+
+
     }
 
 }

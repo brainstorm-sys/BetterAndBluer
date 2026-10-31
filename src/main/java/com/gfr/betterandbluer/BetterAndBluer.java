@@ -44,10 +44,6 @@
             // -- DRUGS --
             new Meth(itemManager).register();
 
-            // -- BEVERAGES --
-            new Beer(itemManager).register();
-            new Vodka(itemManager).register();
-            new Whisky(itemManager).register();
 
             // -- INGREDIENTS --
             new Alluminum(itemManager).register();
