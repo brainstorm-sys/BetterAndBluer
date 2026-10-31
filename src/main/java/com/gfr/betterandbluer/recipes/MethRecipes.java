@@ -3,6 +3,7 @@ package com.gfr.betterandbluer.recipes;
 import com.gfr.betterandbluer.managers.ItemManager;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.BlastFurnace;
 import org.bukkit.inventory.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -60,15 +61,51 @@ public class MethRecipes {
 
         plugin.getServer().addRecipe(sulfate);
 
-        /*// --- Alluminum ---
+        // --- Alluminum ---
         BlastingRecipe alluminum = new BlastingRecipe(
                 new NamespacedKey(plugin, "conversion"),
                 itemManager.create("alluminum"),
-                RecipeChoice.exactChoice(itemManager.create("sulfur")),
+                RecipeChoice.exactChoice(itemManager.create("sulfate")),
                 2.5f,
                 650
         );
-        plugin.getServer().addRecipe(alluminum);*/
+        plugin.getServer().addRecipe(alluminum);
+
+        // --- Organic Mercury Material ---
+        ShapelessRecipe organicmercury = new ShapelessRecipe(new NamespacedKey(plugin, "organicmercury"), itemManager.create("organicmercurymaterial"));
+
+        organicmercury.addIngredient(itemManager.create("shadedbone"));
+        organicmercury.addIngredient(Material.BUCKET);
+
+        plugin.getServer().addRecipe(organicmercury);
+
+        // --- MethylAmine ---
+        ShapelessRecipe methylamine = new ShapelessRecipe(new NamespacedKey(plugin, "methylamine"), itemManager.create("methylamine"));
+
+        methylamine.addIngredient(Material.DEAD_BRAIN_CORAL_BLOCK);
+        methylamine.addIngredient(Material.BRAIN_CORAL_BLOCK);
+        methylamine.addIngredient(Material.SEA_PICKLE);
+        methylamine.addIngredient(Material.LEGACY_GLASS_BOTTLE);
+
+        plugin.getServer().addRecipe(methylamine);
+
+        // --- Mercury ---
+        BlastingRecipe mercury = new BlastingRecipe(
+                new NamespacedKey(plugin, "mercuryconv"),
+                itemManager.create("mercury"),
+                RecipeChoice.exactChoice(itemManager.create("organicmercurymaterial")),
+                3.0f,
+                700
+
+        );
+
+        // --- Shaded Bone ---
+        ShapelessRecipe shade = new ShapelessRecipe(new NamespacedKey(plugin, "shadedbone"), itemManager.create("shadedbone"));
+
+        shade.addIngredient(itemManager.create("fish_bone"));
+        shade.addIngredient(Material.INK_SAC);
+
+        plugin.getServer().addRecipe(shade);
 
 
     }
@@ -76,3 +113,5 @@ public class MethRecipes {
 
 
 }
+
+//

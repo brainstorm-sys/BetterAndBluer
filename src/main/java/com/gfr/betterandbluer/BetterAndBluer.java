@@ -56,6 +56,8 @@
             new Phenylacetone(itemManager).register();
             new Sulfate(itemManager).register();
             new HoneyCocoaPaste(itemManager).register();
+            new OrganicMercuryMaterial(itemManager).register();
+            new ShadedFishBone(itemManager).register();
 
             // -- RECIPE --
             new MethRecipes(this, itemManager).register();
