@@ -6,7 +6,6 @@
     import com.gfr.betterandbluer.items.drugs.Meth;
     import com.gfr.betterandbluer.items.ingredients.*;
     import com.gfr.betterandbluer.listeners.MethListener;
-    import com.gfr.betterandbluer.managers.Commands;
     import com.gfr.betterandbluer.managers.ItemManager;
     import com.gfr.betterandbluer.recipes.*;
     import dev.jorel.commandapi.CommandAPI;
@@ -67,8 +66,7 @@
             new MethListener(this, itemManager);
 
             // ------ COMMANDS ------
-            Commands commands = new Commands(this, itemManager);
-            commands.register();
+
 
         }
 

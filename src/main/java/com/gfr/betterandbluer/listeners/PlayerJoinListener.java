@@ -64,7 +64,7 @@ public class PlayerJoinListener implements Listener {
         HttpURLConnection conn = (HttpURLConnection) URI.create(fileUrl)
                 .toURL().openConnection();
         conn.setRequestMethod("GET");
-        conn.setRequestProperty("User-Agent", "GoodFellowRepublic-Plugin");
+        conn.setRequestProperty("User-Agent", "BetterandBluer-Plugin");
         conn.setConnectTimeout(15000);
         conn.setReadTimeout(30000);
         conn.setInstanceFollowRedirects(true);
