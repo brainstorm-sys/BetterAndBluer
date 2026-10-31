@@ -1,0 +1,6 @@
+name: betterandbluer
+version: '${version}'
+
+main: com.gfr.betterandbluer.BetterAndBluer
+api-version: '26.3'
+load: POSTWORLD

@@ -1,0 +1,6 @@
+name: goodfellowrepublic
+version: '1.0-SNAPSHOT'
+
+main: com.gfr.goodfellowrepublic.GoodFellowRepublic
+api-version: '26.3'
+load: POSTWORLD
