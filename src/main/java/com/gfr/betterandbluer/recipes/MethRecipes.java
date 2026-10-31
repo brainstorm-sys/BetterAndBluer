@@ -43,10 +43,10 @@ public class MethRecipes {
 
 
         // --- Phenylacetone ---
-        BlastingRecipe acetone = new BlastingRecipe(
+        FurnaceRecipe acetone = new FurnaceRecipe(
                 new NamespacedKey(plugin, "reduction"),
                 itemManager.create("phenylacetone"),
-                RecipeChoice.exactChoice(itemManager.create("phenylacetic_acid")),
+                RecipeChoice.exactChoice(itemManager.create("phenylacetic_acidsolution")),
                 2.0f,
                 600
         );
@@ -99,6 +99,8 @@ public class MethRecipes {
 
         );
 
+        plugin.getServer().addRecipe(mercury);
+
         // --- Shaded Bone ---
         ShapelessRecipe shade = new ShapelessRecipe(new NamespacedKey(plugin, "shadedbone"), itemManager.create("shadedbone"));
 
@@ -106,6 +108,15 @@ public class MethRecipes {
         shade.addIngredient(Material.INK_SAC);
 
         plugin.getServer().addRecipe(shade);
+
+
+        // -- Phenyl Acetic Acid Solution --
+        ShapelessRecipe p2psol = new ShapelessRecipe(new NamespacedKey(plugin, "phenylaceticacidsolution"), itemManager.create("phenylacetic_acidsolution"));
+
+        p2psol.addIngredient(Material.POTION);
+        p2psol.addIngredient(itemManager.create("phenylacetic_acid"));
+
+        plugin.getServer().addRecipe(p2psol);
 
 
     }

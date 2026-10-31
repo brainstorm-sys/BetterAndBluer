@@ -58,6 +58,7 @@
             new HoneyCocoaPaste(itemManager).register();
             new OrganicMercuryMaterial(itemManager).register();
             new ShadedFishBone(itemManager).register();
+            new PhenylAceticAcidSolution(itemManager).register();
 
             // -- RECIPE --
             new MethRecipes(this, itemManager).register();
