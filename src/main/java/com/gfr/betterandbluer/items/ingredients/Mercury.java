@@ -13,6 +13,6 @@ public class Mercury {
     }
 
     public void register() {
-        itemManager.register("mercury", Material.PAPER, "goodfellows:ingredients/mercury", mm.deserialize("Mercury"));
+        itemManager.register("mercury", Material.BUCKET, "goodfellows:ingredients/mercury", mm.deserialize("Mercury"));
     }
 }

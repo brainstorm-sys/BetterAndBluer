@@ -13,6 +13,6 @@ public class OrganicMercuryMaterial {
     }
 
     public void register() {
-        itemManager.register("organicmercurymaterial", Material.PAPER, "goodfellows:ingredients/organicmercurymaterial", mm.deserialize("Organic Mercury Material"));
+        itemManager.register("organicmercurymaterial", Material.BUCKET, "goodfellows:ingredients/organicmercurymaterial", mm.deserialize("Organic Mercury Material"));
     }
 }

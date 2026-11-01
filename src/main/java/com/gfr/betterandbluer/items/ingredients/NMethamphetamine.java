@@ -13,6 +13,6 @@ public class NMethamphetamine {
     }
 
     public void register() {
-        itemManager.register("n_methamphetamine", Material.PAPER, "goodfellows:ingredients/n_methamphetamine", mm.deserialize("N Methamphetamine"));
+        itemManager.register("n_methamphetamine", Material.PAPER, "goodfellows:ingredients/n_methamphetamine", mm.deserialize("Methamphetamine"));
     }
 }

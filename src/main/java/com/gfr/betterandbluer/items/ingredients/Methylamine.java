@@ -13,6 +13,6 @@ public class Methylamine {
     }
 
     public void register() {
-        itemManager.register("methylamine", Material.PAPER, "goodfellows:ingredients/methylamine", mm.deserialize("Methylamine"));
+        itemManager.register("methylamine", Material.GLASS_BOTTLE, "goodfellows:ingredients/methylamine", mm.deserialize("Methylamine"));
     }
 }

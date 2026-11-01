@@ -118,6 +118,15 @@ public class MethRecipes {
 
         plugin.getServer().addRecipe(p2psol);
 
+        // -- meth itself.. haha --
+        ShapelessRecipe meth = new ShapelessRecipe(new NamespacedKey(plugin, "metham"), itemManager.create("n_methamphetamine"));
+
+        meth.addIngredient(itemManager.create("alluminum_amalgam"));
+        meth.addIngredient(itemManager.create("methylamine"));
+        meth.addIngredient(itemManager.create("phenylacetone"));
+
+
+        plugin.getServer().addRecipe(meth);
 
     }
 

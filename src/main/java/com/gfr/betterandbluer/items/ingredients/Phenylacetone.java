@@ -13,6 +13,6 @@ public class Phenylacetone {
     }
 
     public void register() {
-        itemManager.register("phenylacetone", Material.PAPER, "goodfellows:ingredients/phenylacetone", mm.deserialize("Phenylacetone"));
+        itemManager.register("phenylacetone", Material.GLASS_BOTTLE, "goodfellows:ingredients/phenylacetone", mm.deserialize("Phenylacetone"));
     }
 }
