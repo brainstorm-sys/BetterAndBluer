@@ -3,6 +3,8 @@ package com.gfr.betterandbluer.listeners;
 import com.gfr.betterandbluer.managers.ItemManager;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -27,6 +29,7 @@ import org.checkerframework.checker.units.qual.Current;
 
 import javax.naming.Name;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -124,12 +127,26 @@ public class MethListener implements Listener {
                 );
 
 
+                // Customisation
+
+                ItemStack meth1 = itemManager.create("n_methamphetamine");
+                ItemMeta meta = meth1.getItemMeta();
+
+                meta.lore(List.of(
+                        Component.text(""),
+                        MiniMessage.miniMessage().deserialize("<gradient:#6179DD:#7754F4><!italic>ɪ ᴡ</!italic></gradient><gradient:#7754F4:#1FA4D7><!italic>ᴀѕ ɢᴏᴏᴅ </!italic></gradient><gradient:#1FA4D7:#5BE3EB><!italic>ᴀᴛ ɪᴛ.</!italic></gradient>")
+                ));
+
+                meth1.setItemMeta(meta);
+                //
+
+
                 mainhand.setAmount(mainhand.getAmount() - 1);
                 if(mainhand.getAmount() <= 0){
-                    p.getInventory().setItemInMainHand(itemManager.create("n_methamphetamine"));
+                    p.getInventory().setItemInMainHand(meth1);
                 }
                 else {
-                    p.give(itemManager.create("n_methamphetamine"));
+                    p.give(meth1);
                 }
 
             }

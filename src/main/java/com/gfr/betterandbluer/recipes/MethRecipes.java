@@ -120,6 +120,8 @@ public class MethRecipes {
 
         plugin.getServer().addRecipe(methamphetamine);
 
+        // brew setup
+
         ItemStack water = new ItemStack(Material.POTION);
         PotionMeta watermeta = (PotionMeta) water.getItemMeta();
         watermeta.setBasePotionType(PotionType.WATER);
@@ -127,7 +129,7 @@ public class MethRecipes {
 
 
         // PhenylAcetone Recipe
-        BrewingRecipe test = new BrewingRecipe(
+        BrewingRecipe phneylacetone = new BrewingRecipe(
                 new NamespacedKey(plugin, "brewstuff"),
                 itemManager.create("phenylacetone"),
                 RecipeChoice.exactChoice(water),
@@ -135,7 +137,7 @@ public class MethRecipes {
 
         );
 
-        plugin.getServer().addRecipe(test);
+        plugin.getServer().addRecipe(phneylacetone);
 
         // unpur -> pure
 
