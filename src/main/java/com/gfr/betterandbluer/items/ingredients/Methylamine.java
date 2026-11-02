@@ -1,6 +1,7 @@
 package com.gfr.betterandbluer.items.ingredients;
 
 import com.gfr.betterandbluer.managers.ItemManager;
+import io.papermc.paper.datacomponent.DataComponentTypes;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 
@@ -13,6 +14,7 @@ public class Methylamine {
     }
 
     public void register() {
-        itemManager.register("methylamine", Material.GLASS_BOTTLE, "goodfellows:ingredients/methylamine", mm.deserialize("Methylamine"));
+        itemManager.register("methylamine", Material.GLASS_BOTTLE, "goodfellows:ingredients/methylamine", mm.deserialize("Methylamine"),
+                ItemManager.DataComponent.of(DataComponentTypes.MAX_STACK_SIZE, 1));
     }
 }
