@@ -110,7 +110,8 @@ public class MethListener implements Listener {
     // sry if it looks weird and janky, pls do lmk if there can be better logic
     // gonna be my first logic made all by myself without any ai / google help. I'm proud of it.
 
-    @EventHandler
+
+    /*@EventHandler
     public void onCraft(CraftItemEvent e) {
         Bukkit.getLogger().info("cat 6 - CraftItemEvent fired");
 
@@ -200,7 +201,57 @@ public class MethListener implements Listener {
 
             Bukkit.getLogger().info("cat 20 - Finished");
         });
+    }*/
+    @EventHandler
+    public void OnCraft(CraftItemEvent e){
+        Player p = (Player) e.getWhoClicked();
+
+        ItemStack[] matrix = e.getInventory().getMatrix();
+
+        if(!(p.getOpenInventory().getTopInventory() instanceof CraftingInventory)) return;
+
+        // the holy grail that took almost 2 days to figure out
+        for(int i=0; i < matrix.length; i++){
+            if(matrix[i] != null){
+                matrix[i] = matrix[i].clone();
+            }
+        }
+
+        Bukkit.getScheduler().runTask(plugin, ()-> {
+            if(!(p.getOpenInventory().getTopInventory() instanceof CraftingInventory)) return;
+
+            CraftingInventory Inv = (CraftingInventory) p.getOpenInventory().getTopInventory();
+
+            for(int i = 0; i < matrix.length; i++){
+                ItemStack item = matrix[i];
+
+                if(item == null || item.getType() == Material.AIR) continue;
+
+                if(itemManager.getItemId(item).equals("mercury")){
+                    ItemStack bucket = new ItemStack(Material.BUCKET);
+                    ItemMeta meta = bucket.getItemMeta();
+
+                    if(meta != null){
+                        meta.getPersistentDataContainer().set(
+                                itemKey,
+                                PersistentDataType.STRING,
+                                "buckethahanoob"
+                        );
+
+                        bucket.setItemMeta(meta);
+
+                    }
+
+                    int slot = i + 1;
+                    Inv.setItem(slot, bucket);
+                }
+            }
+
+            p.updateInventory();
+
+        });
+
     }
 
-
+// jesus it works, tears in my fricking eyes
 }
