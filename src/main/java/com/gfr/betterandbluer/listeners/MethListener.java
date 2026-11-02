@@ -213,21 +213,6 @@ public class MethListener implements Listener {
 
     }
 
-    // beta test
-
-    /*@EventHandler
-    public void onBrew(BrewingStartEvent e){
-        Bukkit.getLogger().info("Cat 1 - Interact Event");
-        BrewerInventory brewInv = e.getIn();
-        ItemStack ingredient = brewInv.getItem(3);
-
-        if(ingredient == null) return;
-        if(itemManager.getItemId(ingredient).equals("phenylacetic_acidsolution")){
-            brewInv.setItem(1, itemManager.create("phenylacetic_acidsolution"));
-        }
-
-    }*/
-
 // jesus it works, tears in my fricking eyes
 
 

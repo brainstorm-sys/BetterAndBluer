@@ -1,6 +1,7 @@
 package com.gfr.betterandbluer.recipes;
 
 import com.gfr.betterandbluer.managers.ItemManager;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.BlastFurnace;
@@ -44,17 +45,6 @@ public class MethRecipes {
 
         plugin.getServer().addRecipe(phenyl);
 
-
-        // --- Phenylacetone ---
-        FurnaceRecipe acetone = new FurnaceRecipe(
-                new NamespacedKey(plugin, "reduction"),
-                itemManager.create("phenylacetone"),
-                RecipeChoice.exactChoice(itemManager.create("phenylacetic_acidsolution")),
-                2.0f,
-                600
-        );
-
-        plugin.getServer().addRecipe(acetone);
 
         // --- Sulfate ---
         ShapelessRecipe sulfate = new ShapelessRecipe(new NamespacedKey(plugin, "sulfatee"), itemManager.create("sulfate").add(1));
@@ -128,19 +118,7 @@ public class MethRecipes {
         methamphetamine.addIngredient(itemManager.create("methylamine"));
         methamphetamine.addIngredient(itemManager.create("phenylacetone"));
 
-
         plugin.getServer().addRecipe(methamphetamine);
-
-        // unpur -> pure
-        FurnaceRecipe meth = new FurnaceRecipe(
-                new NamespacedKey(plugin, "liquidmeth"),
-                itemManager.create("liquidmeth"),
-                RecipeChoice.exactChoice(itemManager.create("unpuremeth")),
-                7.0f,
-                100
-        );
-
-        plugin.getServer().addRecipe(meth);
 
         ItemStack water = new ItemStack(Material.POTION);
         PotionMeta watermeta = (PotionMeta) water.getItemMeta();
@@ -148,7 +126,7 @@ public class MethRecipes {
         water.setItemMeta(watermeta);
 
 
-        // test
+        // PhenylAcetone Recipe
         BrewingRecipe test = new BrewingRecipe(
                 new NamespacedKey(plugin, "brewstuff"),
                 itemManager.create("phenylacetone"),
@@ -158,6 +136,17 @@ public class MethRecipes {
         );
 
         plugin.getServer().addRecipe(test);
+
+        // unpur -> pure
+
+        BrewingRecipe meth = new BrewingRecipe(
+                new NamespacedKey(plugin, "methpurification"),
+                itemManager.create("liquidmeth"),
+                RecipeChoice.exactChoice(water),
+                RecipeChoice.exactChoice(itemManager.create("unpuremeth"))
+        );
+
+        plugin.getServer().addRecipe(meth);
 
     }
 
