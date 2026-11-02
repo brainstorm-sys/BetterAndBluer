@@ -118,7 +118,7 @@ public class MethRecipes {
 
         plugin.getServer().addRecipe(p2psol);
 
-        // -- meth itself.. haha --
+        // -- meth itself.. haha (unpure) --
         ShapelessRecipe methamphetamine = new ShapelessRecipe(new NamespacedKey(plugin, "metham"), itemManager.create("unpuremeth"));
 
         methamphetamine.addIngredient(itemManager.create("alluminum_amalgam"));
@@ -127,6 +127,28 @@ public class MethRecipes {
 
 
         plugin.getServer().addRecipe(methamphetamine);
+
+        // unpur -> pure
+        FurnaceRecipe meth = new FurnaceRecipe(
+                new NamespacedKey(plugin, "liquidmeth"),
+                itemManager.create("liquidmeth"),
+                RecipeChoice.exactChoice(itemManager.create("unpuremeth")),
+                7.0f,
+                100
+        );
+
+        plugin.getServer().addRecipe(meth);
+
+        // test
+        BrewingRecipe test = new BrewingRecipe(
+                new NamespacedKey(plugin, "brewstuff"),
+                itemManager.create("phenylacetone"),
+                RecipeChoice.exactChoice(new ItemStack(Material.BOTTLE)),
+                RecipeChoice.exactChoice(itemManager.create("phenylacetic_acidsolution"))
+
+        );
+
+        plugin.getServer().addRecipe(test);
 
     }
 

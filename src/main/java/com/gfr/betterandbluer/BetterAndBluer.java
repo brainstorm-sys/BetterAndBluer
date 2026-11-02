@@ -60,6 +60,7 @@
             new ShadedFishBone(itemManager).register();
             new PhenylAceticAcidSolution(itemManager).register();
             new UnpureMeth(itemManager).register();
+            new LiquidMeth(itemManager).register();
 
             // -- RECIPE --
             new MethRecipes(this, itemManager).register();

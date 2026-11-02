@@ -1,6 +1,7 @@
 package com.gfr.betterandbluer.items.ingredients;
 
 import com.gfr.betterandbluer.managers.ItemManager;
+import io.papermc.paper.datacomponent.DataComponentTypes;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 
@@ -13,6 +14,7 @@ public class UnpureMeth {
     }
 
     public void register() {
-        itemManager.register("unpuremeth", Material.PAPER, "goodfellows:ingredients/unpuremeth", mm.deserialize("Unpure Meth"));
+        itemManager.register("unpuremeth", Material.PAPER, "goodfellows:ingredients/unpuremeth", mm.deserialize("Unpure Meth"),
+                ItemManager.DataComponent.of(DataComponentTypes.MAX_STACK_SIZE, 32));
     }
 }

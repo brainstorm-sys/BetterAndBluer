@@ -14,7 +14,7 @@ public class PhenylAceticAcidSolution {
     }
 
     public void register() {
-        itemManager.register("phenylacetic_acidsolution", Material.GLASS_BOTTLE, "goodfellows:ingredients/phenylacetic_acidsolution", mm.deserialize("P2P Solution"),
+        itemManager.register("phenylacetic_acidsolution", Material.NETHER_WART, "goodfellows:ingredients/phenylacetic_acidsolution", mm.deserialize("P2P Solution"),
                 ItemManager.DataComponent.of(DataComponentTypes.MAX_STACK_SIZE, 1));
     }
 }

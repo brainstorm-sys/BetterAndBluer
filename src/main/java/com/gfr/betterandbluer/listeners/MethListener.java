@@ -6,16 +6,19 @@ import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
+import org.bukkit.block.BrewingStand;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BrewingStartEvent;
+import org.bukkit.event.inventory.BrewEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
-import org.bukkit.inventory.CraftingInventory;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -47,11 +50,6 @@ public class MethListener implements Listener {
     public void onGrindStoneClick(PlayerInteractEvent e) {
         Player player = e.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
-
-        ItemStack test = itemManager.create("test");
-        itemManager.getItemId(test);
-        itemManager.getCustomItem(itemManager.getItemId(test));
-
 
         if (e.getClickedBlock() != null) {
 
@@ -104,104 +102,47 @@ public class MethListener implements Listener {
 
     }
 
+    // -- glass -> pure meth logic
+
+    @EventHandler
+    public void onAnvil(PlayerInteractEvent e){
+        Player p = e.getPlayer();
+
+        if (e.getClickedBlock() == null || e.getClickedBlock().getType() == Material.AIR) return;
+
+        ItemStack mainhand = p.getInventory().getItemInMainHand();
+        if (itemManager.getItemId(mainhand).equals("liquidmeth")){
+            if (e.getClickedBlock().getType() == Material.ANVIL){
+                e.setCancelled(true);
+
+                //audio
+                var loc = e.getClickedBlock().getLocation().add(0.5, 0.5, 0.5);
+
+                p.getWorld().playSound(
+                        Sound.sound(Key.key("minecraft:block.glass.break"), Sound.Source.BLOCK, 1f, 1f),
+                        loc.getX(), loc.getY(), loc.getZ()
+                );
+
+
+                mainhand.setAmount(mainhand.getAmount() - 1);
+                if(mainhand.getAmount() <= 0){
+                    p.getInventory().setItemInMainHand(itemManager.create("n_methamphetamine"));
+                }
+                else {
+                    p.give(itemManager.create("n_methamphetamine"));
+                }
+
+            }
+        }
+
+    }
+
     // -- custom crafting logic (where it replaces existing items in crafting grid)
 
     // my god i gotta figure out logic so it can replace items with empty bucket to make it realistic... :skull:
     // sry if it looks weird and janky, pls do lmk if there can be better logic
     // gonna be my first logic made all by myself without any ai / google help. I'm proud of it.
 
-
-    /*@EventHandler
-    public void onCraft(CraftItemEvent e) {
-        Bukkit.getLogger().info("cat 6 - CraftItemEvent fired");
-
-        Player p = (Player) e.getWhoClicked();
-
-        ItemStack[] currentMatrix = e.getInventory().getMatrix();
-
-        for (int i = 0; i < currentMatrix.length; i++) {
-            if (currentMatrix[i] != null) {
-                currentMatrix[i] = currentMatrix[i].clone();
-            }
-        }
-
-        Bukkit.getLogger().info("cat 8 - Captured matrix:");
-
-        for (int i = 0; i < currentMatrix.length; i++) {
-            ItemStack item = currentMatrix[i];
-
-            Bukkit.getLogger().info(
-                    "Slot " + i + ": " +
-                            (item == null ? "NULL" :
-                                    item.getType() + " x" + item.getAmount() +
-                                            " | ID: " + itemManager.getItemId(item))
-            );
-        }
-
-        Bukkit.getLogger().info("cat 9 - Scheduling task");
-
-        Bukkit.getScheduler().runTask(plugin, () -> {
-            Bukkit.getLogger().info("cat 10 - Scheduled task running");
-
-            Bukkit.getLogger().info("cat 11 - Top inventory: "
-                    + p.getOpenInventory().getTopInventory().getType());
-
-            if (!(p.getOpenInventory().getTopInventory() instanceof CraftingInventory)) {
-                Bukkit.getLogger().info("cat 12 - NOT A CRAFTING INVENTORY");
-                return;
-            }
-
-            CraftingInventory currentInv =
-                    (CraftingInventory) p.getOpenInventory().getTopInventory();
-
-            Bukkit.getLogger().info("cat 13 - Processing saved matrix");
-
-            for (int i = 0; i < currentMatrix.length; i++) {
-                ItemStack originalItem = currentMatrix[i];
-
-                Bukkit.getLogger().info("cat 14 - Checking matrix index " + i);
-
-                if (originalItem == null || originalItem.getType() == Material.AIR) {
-                    Bukkit.getLogger().info("cat 15 - Empty slot " + i);
-                    continue;
-                }
-
-                String itemId = itemManager.getItemId(originalItem);
-
-                Bukkit.getLogger().info("cat 16 - Item ID: " + itemId);
-
-                if ("mercury".equals(itemId)) {
-                    Bukkit.getLogger().info("cat 17 - MERCURY FOUND AT INDEX " + i);
-
-                    ItemStack bucket = new ItemStack(Material.BUCKET);
-
-                    ItemMeta meta = bucket.getItemMeta();
-
-                    if (meta != null) {
-                        meta.getPersistentDataContainer().set(
-                                itemKey,
-                                PersistentDataType.STRING,
-                                "mercury_bucket"
-                        );
-
-                        bucket.setItemMeta(meta);
-                    }
-
-                    int slot = i + 1;
-
-                    Bukkit.getLogger().info("cat 18 - Replacing inventory slot " + slot);
-
-                    currentInv.setItem(slot, bucket);
-                }
-            }
-
-            Bukkit.getLogger().info("cat 19 - Updating inventory");
-
-            p.updateInventory();
-
-            Bukkit.getLogger().info("cat 20 - Finished");
-        });
-    }*/
     @EventHandler
     public void OnCraft(CraftItemEvent e){
         Player p = (Player) e.getWhoClicked();
@@ -271,6 +212,21 @@ public class MethListener implements Listener {
         });
 
     }
+
+    // beta test
+
+    /*@EventHandler
+    public void onBrew(BrewingStartEvent e){
+        Bukkit.getLogger().info("Cat 1 - Interact Event");
+        BrewerInventory brewInv = e.getIn();
+        ItemStack ingredient = brewInv.getItem(3);
+
+        if(ingredient == null) return;
+        if(itemManager.getItemId(ingredient).equals("phenylacetic_acidsolution")){
+            brewInv.setItem(1, itemManager.create("phenylacetic_acidsolution"));
+        }
+
+    }*/
 
 // jesus it works, tears in my fricking eyes
 
