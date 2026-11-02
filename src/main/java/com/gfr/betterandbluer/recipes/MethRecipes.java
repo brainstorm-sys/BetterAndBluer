@@ -5,7 +5,10 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.BlastFurnace;
 import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionType;
 
 public class MethRecipes {
 
@@ -139,11 +142,17 @@ public class MethRecipes {
 
         plugin.getServer().addRecipe(meth);
 
+        ItemStack water = new ItemStack(Material.POTION);
+        PotionMeta watermeta = (PotionMeta) water.getItemMeta();
+        watermeta.setBasePotionType(PotionType.WATER);
+        water.setItemMeta(watermeta);
+
+
         // test
         BrewingRecipe test = new BrewingRecipe(
                 new NamespacedKey(plugin, "brewstuff"),
                 itemManager.create("phenylacetone"),
-                RecipeChoice.exactChoice(new ItemStack(Material.BOTTLE)),
+                RecipeChoice.exactChoice(water),
                 RecipeChoice.exactChoice(itemManager.create("phenylacetic_acidsolution"))
 
         );
