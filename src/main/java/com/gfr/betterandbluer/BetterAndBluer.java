@@ -59,6 +59,7 @@
             new OrganicMercuryMaterial(itemManager).register();
             new ShadedFishBone(itemManager).register();
             new PhenylAceticAcidSolution(itemManager).register();
+            new UnpureMeth(itemManager).register();
 
             // -- RECIPE --
             new MethRecipes(this, itemManager).register();

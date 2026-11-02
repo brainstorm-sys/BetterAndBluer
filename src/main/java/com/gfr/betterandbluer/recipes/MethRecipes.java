@@ -85,7 +85,7 @@ public class MethRecipes {
         methylamine.addIngredient(Material.DEAD_BRAIN_CORAL_BLOCK);
         methylamine.addIngredient(Material.BRAIN_CORAL_BLOCK);
         methylamine.addIngredient(Material.SEA_PICKLE);
-        methylamine.addIngredient(Material.LEGACY_GLASS_BOTTLE);
+        methylamine.addIngredient(Material.POTION);
 
         plugin.getServer().addRecipe(methylamine);
 
@@ -119,14 +119,14 @@ public class MethRecipes {
         plugin.getServer().addRecipe(p2psol);
 
         // -- meth itself.. haha --
-        ShapelessRecipe meth = new ShapelessRecipe(new NamespacedKey(plugin, "metham"), itemManager.create("n_methamphetamine"));
+        ShapelessRecipe methamphetamine = new ShapelessRecipe(new NamespacedKey(plugin, "metham"), itemManager.create("unpuremeth"));
 
-        meth.addIngredient(itemManager.create("alluminum_amalgam"));
-        meth.addIngredient(itemManager.create("methylamine"));
-        meth.addIngredient(itemManager.create("phenylacetone"));
+        methamphetamine.addIngredient(itemManager.create("alluminum_amalgam"));
+        methamphetamine.addIngredient(itemManager.create("methylamine"));
+        methamphetamine.addIngredient(itemManager.create("phenylacetone"));
 
 
-        plugin.getServer().addRecipe(meth);
+        plugin.getServer().addRecipe(methamphetamine);
 
     }
 

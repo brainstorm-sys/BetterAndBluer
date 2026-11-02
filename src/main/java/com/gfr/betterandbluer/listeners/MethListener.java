@@ -245,6 +245,25 @@ public class MethListener implements Listener {
                     int slot = i + 1;
                     Inv.setItem(slot, bucket);
                 }
+
+                else if (itemManager.getItemId(item).equals("phenylacetone") || itemManager.getItemId(item).equals("methylamine")){
+                    ItemStack glass = new ItemStack(Material.GLASS_BOTTLE);
+                    ItemMeta glassmeta = glass.getItemMeta();
+
+                    if(glassmeta != null){
+                        glassmeta.getPersistentDataContainer().set(
+                                itemKey,
+                                PersistentDataType.STRING,
+                                "ezglassp"
+                        );
+                    }
+
+                    glass.setItemMeta(glassmeta);
+
+                    int slot = i + 1;
+                    Inv.setItem(slot, glass);
+
+                }
             }
 
             p.updateInventory();
@@ -254,4 +273,6 @@ public class MethListener implements Listener {
     }
 
 // jesus it works, tears in my fricking eyes
+
+
 }
