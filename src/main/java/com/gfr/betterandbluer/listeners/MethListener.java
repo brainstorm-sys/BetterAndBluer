@@ -1,6 +1,8 @@
 package com.gfr.betterandbluer.listeners;
 
 import com.gfr.betterandbluer.managers.ItemManager;
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.FoodProperties;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
@@ -24,14 +26,13 @@ import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.checkerframework.checker.units.qual.Current;
 
 import javax.naming.Name;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 
 public class MethListener implements Listener {
@@ -59,6 +60,7 @@ public class MethListener implements Listener {
         // phenylacetic acid
         ItemStack pa = itemManager.create("phenylacetic_acid");
         ItemMeta pameta = pa.getItemMeta();
+
 
         pameta.lore(List.of(
                 Component.text(""),
@@ -150,6 +152,7 @@ public class MethListener implements Listener {
                 ItemStack meth1 = itemManager.create("n_methamphetamine");
                 ItemMeta meta = meth1.getItemMeta();
 
+
                 meta.lore(List.of(
                         Component.text(""),
                         MiniMessage.miniMessage().deserialize("<gradient:#6179DD:#7754F4><!italic>ɪ ᴡ</!italic></gradient><gradient:#7754F4:#1FA4D7><!italic>ᴀѕ ɢᴏᴏᴅ </!italic></gradient><gradient:#1FA4D7:#5BE3EB><!italic>ᴀᴛ ɪᴛ.</!italic></gradient>"),
@@ -164,6 +167,14 @@ public class MethListener implements Listener {
                         MiniMessage.miniMessage().deserialize("<!i><color:#61BADD>ᴛᴀᴋᴇ ᴇɴᴏᴜɢʜ ᴛᴏ ʙᴇᴄᴏᴍᴇ ᴘᴀʀᴀɴᴏɪᴅ.</color></!i>")
 
                 ));
+
+                meth1.setData(DataComponentTypes.FOOD,
+                        FoodProperties.food()
+                                .canAlwaysEat(true)
+                                .nutrition(0)
+                                .saturation(0)
+                                .build()
+                        );
 
                 meth1.setItemMeta(meta);
 
@@ -259,6 +270,31 @@ public class MethListener implements Listener {
         });
 
     }
+
+
+    // IMP SHIT EXPERIMENTAL. (final part except dimension idea)
+
+    @EventHandler
+    public void onEatMeth(PlayerItemConsumeEvent e){
+        Player p = e.getPlayer();
+        ItemStack methItem = p.getInventory().getItemInMainHand();
+
+        Random methRandom = new Random();
+
+        double roll = methRandom.nextDouble();
+
+        if (methItem == null || methItem.getType() == Material.AIR) return;
+        if (methItem == itemManager.create("n_methamphetamine")){
+
+
+            if (roll < 0.20){
+
+            }
+        }
+    }
+
+
+
 
 // jesus it works, tears in my fricking eyes
 

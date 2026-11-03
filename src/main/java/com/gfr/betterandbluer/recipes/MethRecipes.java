@@ -66,7 +66,7 @@ public class MethRecipes {
         ItemStack p2p = itemManager.create("phenylacetic_acidsolution");
         ItemMeta p2pmeta = p2p.getItemMeta();
 
-        p2p.lore(List.of(
+        p2pmeta.lore(List.of(
                 Component.text(""),
                 MiniMessage.miniMessage().deserialize("<!i><color:#F35BF3>- ɪᴜᴘᴀᴄ ɴᴀᴍᴇ: 2-ᴘʜᴇɴʏʟᴀᴄᴇᴛɪᴄ ᴀᴄɪᴅ</color></!i>"),
                 MiniMessage.miniMessage().deserialize("<!i><color:#F35BF3>- ᴍᴏʟᴇᴄᴜʟᴀʀ ꜰᴏʀᴍᴜʟᴀ: ᴄ8ʜ8ᴏ2</color></!i>"),
@@ -169,6 +169,8 @@ public class MethRecipes {
                 MiniMessage.miniMessage().deserialize("<!i><color:#F35BF3>- ᴍᴏʟᴀʀ ᴍᴀѕѕ: 136.15 ɢ·ᴍᴏʟ⁻¹</color></!i>")
         ));
 
+        phenylacid.setItemMeta(acidmeta);
+
 
         // ---  ---  ---  ---  ---
 
@@ -248,15 +250,16 @@ public class MethRecipes {
 
 
         // -- Phenyl Acetic Acid Solution --
-        ShapelessRecipe p2psol = new ShapelessRecipe(new NamespacedKey(plugin, "phenylaceticacidsolution"), p2p);
+        ShapelessRecipe p2psol = new ShapelessRecipe(new NamespacedKey(plugin, "phenylaceticacidsolutionrecipe"), p2p);
 
         p2psol.addIngredient(Material.POTION);
         p2psol.addIngredient(phenylacid);
 
         plugin.getServer().addRecipe(p2psol);
 
+
         // -- meth itself.. haha (unpure) --
-        ShapelessRecipe methamphetamine = new ShapelessRecipe(new NamespacedKey(plugin, "metham"), itemManager.create("unpuremeth"));
+        ShapelessRecipe methamphetamine = new ShapelessRecipe(new NamespacedKey(plugin, "metham"), umeth);
 
         methamphetamine.addIngredient(amitem);
         methamphetamine.addIngredient(methylaminem);
