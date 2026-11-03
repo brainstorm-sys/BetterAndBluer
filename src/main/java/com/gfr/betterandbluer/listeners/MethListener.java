@@ -134,7 +134,17 @@ public class MethListener implements Listener {
 
                 meta.lore(List.of(
                         Component.text(""),
-                        MiniMessage.miniMessage().deserialize("<gradient:#6179DD:#7754F4><!italic>ɪ ᴡ</!italic></gradient><gradient:#7754F4:#1FA4D7><!italic>ᴀѕ ɢᴏᴏᴅ </!italic></gradient><gradient:#1FA4D7:#5BE3EB><!italic>ᴀᴛ ɪᴛ.</!italic></gradient>")
+                        MiniMessage.miniMessage().deserialize("<gradient:#6179DD:#7754F4><!italic>ɪ ᴡ</!italic></gradient><gradient:#7754F4:#1FA4D7><!italic>ᴀѕ ɢᴏᴏᴅ </!italic></gradient><gradient:#1FA4D7:#5BE3EB><!italic>ᴀᴛ ɪᴛ.</!italic></gradient>"),
+                        Component.text(""),
+                        MiniMessage.miniMessage().deserialize("<!i><gradient:#6179DD:#7754F4><shadow:#181E37:1>-</shadow><shadow:#191D38:1>-</shadow><shadow:#1A1C39:1>-</shadow><shadow:#1A1B39:1>-</shadow></gradient><gradient:#7754F4:#1FA4D7><shadow:#1B1A3A:1>-</shadow><shadow:#1C183B:1>-</shadow><shadow:#1D173C:1>-</shadow><shadow:#1D163C:1>-</shadow><shadow:#1E153D:1>-</shadow><shadow:#1B183C:1>-</shadow><shadow:#181B3B:1>-</shadow><shadow:#151E3A:1>-</shadow><shadow:#112039:1>-</shadow><shadow:#0E2338:1>-</shadow><shadow:#0B2637:1>-</shadow></gradient><gradient:#1FA4D7:#5BE3EB><shadow:#082936:1>-</shadow><shadow:#0A2B37:1>-</shadow><shadow:#0C2E37:1>-</shadow><shadow:#0E3038:1>-</shadow><shadow:#113239:1>-</shadow><shadow:#13343A:1>-</shadow><shadow:#15373A:1>-</shadow><shadow:#17393B:1>-</shadow></gradient></!i>"),
+                        MiniMessage.miniMessage().deserialize("<!i><color:#6179DD>* 70% ᴄʜᴀɴᴄᴇ ᴏꜰ ɴᴀᴜѕᴇᴀ</color></!i>"),
+                        MiniMessage.miniMessage().deserialize("<!i><color:#6179DD>* 50% ᴄʜᴀɴᴄᴇ ᴏꜰ ᴅᴀʀᴋɴᴇѕѕ</color></!i>"),
+                        MiniMessage.miniMessage().deserialize("<!i><color:#6179DD>* 20% ᴄʜᴀɴᴄᴇ ᴏꜰ ʙᴏᴛʜ</color></!i>"),
+                        MiniMessage.miniMessage().deserialize("<!i><color:#6179DD>* 75% ᴄʜᴀɴᴄᴇ ᴏꜰ ᴘᴏɪѕᴏɴ</color></!i>"),
+                        MiniMessage.miniMessage().deserialize("<!i><color:#6179DD>* ѕᴛʀᴇɴɢᴛʜ 2 + ѕᴘᴇᴇᴅ 1</color></!i>"),
+                        Component.text(""),
+                        MiniMessage.miniMessage().deserialize("<!i><color:#61BADD>ᴛᴀᴋᴇ ᴇɴᴏᴜɢʜ ᴛᴏ ʙᴇᴄᴏᴍᴇ ᴘᴀʀᴀɴᴏɪᴅ.</color></!i>")
+
                 ));
 
                 meth1.setItemMeta(meta);

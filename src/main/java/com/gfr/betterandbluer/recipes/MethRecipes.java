@@ -1,6 +1,8 @@
 package com.gfr.betterandbluer.recipes;
 
 import com.gfr.betterandbluer.managers.ItemManager;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -10,6 +12,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionType;
+
+import java.util.List;
 
 public class MethRecipes {
 
@@ -28,8 +32,21 @@ public class MethRecipes {
 
     public void register(){
 
+        ItemStack amitem = itemManager.create("alluminum_amalgam");
+        ItemMeta amitemmeta = amitem.getItemMeta();
+
+        amitemmeta.lore(List.of(
+                Component.text(""),
+                MiniMessage.miniMessage().deserialize("<!i><color:#FF55FF>* ʀᴇᴘʀᴇѕᴇɴᴛᴀᴛɪᴏɴ: ᴀʟ(ʜɢ) ᴏʀ ᴀʟ–ʜɢ</color></!i>"),
+                MiniMessage.miniMessage().deserialize("<!i><color:#FF55FF>* ᴍᴏʟᴇᴄᴜʟᴀʀ ꜰᴏʀᴍᴜʟᴀ: ɴᴏɴᴇ</color></!i>"),
+                MiniMessage.miniMessage().deserialize("<!i><color:#FF55FF>* ᴍᴏʟᴇᴄᴜʟᴀʀ ᴡᴇɪɢʜᴛ: ᴜɴᴅᴇꜰɪɴᴇᴅ</color></!i>")
+        ));
+
+        amitem.setItemMeta(amitemmeta);
+
+
         // --- Alluminum amalgam ---
-        ShapelessRecipe amalgam = new ShapelessRecipe(new NamespacedKey(plugin, "amalgamballs"), itemManager.create("alluminum_amalgam"));
+        ShapelessRecipe amalgam = new ShapelessRecipe(new NamespacedKey(plugin, "amalgamballs"), amitem);
 
         amalgam.addIngredient(itemManager.create("alluminum"));
         amalgam.addIngredient(itemManager.create("mercury"));
