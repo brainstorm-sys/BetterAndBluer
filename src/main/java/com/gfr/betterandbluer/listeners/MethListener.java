@@ -286,9 +286,29 @@ public class MethListener implements Listener {
         if (methItem == null || methItem.getType() == Material.AIR) return;
         if (methItem == itemManager.create("n_methamphetamine")){
 
+            PotionEffect tuffNausea = new PotionEffect(PotionEffectType.NAUSEA, 400, 1);
+            PotionEffect tuffBlindness = new PotionEffect(PotionEffectType.BLINDNESS, 400, 2);
+            PotionEffect tuffPoison = new PotionEffect(PotionEffectType.POISON, 200, 1);
+            PotionEffect speedHack = new PotionEffect(PotionEffectType.SPEED, 100, 1);
+            PotionEffect strengthHack = new PotionEffect(PotionEffectType.STRENGTH, 100, 2);
+
+            p.addPotionEffect(speedHack);
+            p.addPotionEffect(strengthHack);
 
             if (roll < 0.20){
+                p.addPotionEffect(tuffNausea);
+                p.addPotionEffect(tuffBlindness);
+            } else {
+                if (roll < 0.70){
+                    p.addPotionEffect(tuffNausea);
+                }
+                else if (roll < 0.50){
+                    p.addPotionEffect(tuffBlindness);
+                }
+            }
 
+            if (roll < 0.70){
+                p.addPotionEffect(tuffPoison);
             }
         }
     }
