@@ -49,10 +49,28 @@ public class MethListener implements Listener {
 
     // -- Custom Crafting Logic --
 
+
     @EventHandler
     public void onGrindStoneClick(PlayerInteractEvent e) {
         Player player = e.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
+
+
+        // phenylacetic acid
+        ItemStack pa = itemManager.create("phenylacetic_acid");
+        ItemMeta pameta = pa.getItemMeta();
+
+        pameta.lore(List.of(
+                Component.text(""),
+                MiniMessage.miniMessage().deserialize("<!i><color:#F35BF3>- ɪᴜᴘᴀᴄ ɴᴀᴍᴇ: 2-ᴘʜᴇɴʏʟᴀᴄᴇᴛɪᴄ ᴀᴄɪᴅ</color></!i>"),
+                MiniMessage.miniMessage().deserialize("<!i><color:#F35BF3>- ᴍᴏʟᴇᴄᴜʟᴀʀ ꜰᴏʀᴍᴜʟᴀ: ᴄ8ʜ8ᴏ2</color></!i>"),
+                MiniMessage.miniMessage().deserialize("<!i><color:#F35BF3>- ᴍᴏʟᴀʀ ᴍᴀѕѕ: 136.15 ɢ·ᴍᴏʟ⁻¹</color></!i>")
+        ));
+
+        pa.setItemMeta(pameta);
+
+        // ---  ---  ---  ---
+
 
         if (e.getClickedBlock() != null) {
 
@@ -69,11 +87,11 @@ public class MethListener implements Listener {
                     );
                     item.setAmount(item.getAmount() - 1);
                     if (item.getAmount() <= 0) {
-                        player.getInventory().setItemInMainHand(itemManager.create("phenylacetic_acid"));
+                        player.getInventory().setItemInMainHand(pa);
                     }
 
                     else {
-                        player.give(itemManager.create("phenylacetic_acid"));
+                        player.give(pa);
                     }
                 }
             }
@@ -148,6 +166,8 @@ public class MethListener implements Listener {
                 ));
 
                 meth1.setItemMeta(meta);
+
+
                 //
 
 

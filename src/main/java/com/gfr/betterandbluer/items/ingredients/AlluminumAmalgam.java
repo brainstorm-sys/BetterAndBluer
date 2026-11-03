@@ -13,6 +13,6 @@ public class AlluminumAmalgam {
     }
 
     public void register() {
-        itemManager.register("alluminum_amalgam", Material.PAPER, "goodfellows:ingredients/alluminum_amalgam", mm.deserialize("<color:#AEAEAE>Aluminum Amalgam</color>"));
+        itemManager.register("alluminum_amalgam", Material.PAPER, "goodfellows:ingredients/alluminum_amalgam", mm.deserialize("<color:#AEAEAE><shadow:#2B2626:1>Aluminum Amalgam</shadow></color>"));
     }
 }

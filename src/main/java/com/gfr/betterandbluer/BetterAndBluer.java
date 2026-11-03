@@ -61,6 +61,7 @@
             new PhenylAceticAcidSolution(itemManager).register();
             new UnpureMeth(itemManager).register();
             new LiquidMeth(itemManager).register();
+            new OrganicMix(itemManager).register();
 
             // -- RECIPE --
             new MethRecipes(this, itemManager).register();

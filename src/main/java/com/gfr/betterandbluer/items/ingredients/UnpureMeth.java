@@ -14,7 +14,7 @@ public class UnpureMeth {
     }
 
     public void register() {
-        itemManager.register("unpuremeth", Material.PAPER, "goodfellows:ingredients/unpuremeth", mm.deserialize("Unpure Meth"),
+        itemManager.register("unpuremeth", Material.PAPER, "goodfellows:ingredients/unpuremeth", mm.deserialize("<color:#FCD05C>Unpure Meth</color>"),
                 ItemManager.DataComponent.of(DataComponentTypes.MAX_STACK_SIZE, 32));
     }
 }
