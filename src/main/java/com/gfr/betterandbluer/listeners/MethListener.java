@@ -17,6 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BrewingStartEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.BrewEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
@@ -39,16 +40,19 @@ public class MethListener implements Listener {
     private final JavaPlugin plugin;
     private final ItemManager itemManager;
     private final NamespacedKey itemKey;
-    private final Map<UUID, ItemStack[]> preCrafCache = new HashMap<>();
+    private final ItemStack meth1;
 
     public MethListener(JavaPlugin plugin, ItemManager itemManager) {
         this.plugin = plugin;
         this.itemManager = itemManager;
+        this.meth1 = itemManager.create("n_methamphetamine");
         Bukkit.getPluginManager().registerEvents(this, plugin);
         this.itemKey = new NamespacedKey(plugin, "test");
     }
 
-    private final Map<UUID, UUID> uuidStore = new HashMap<>();
+
+    private final Map<UUID, String> uuidStore = new HashMap<>();
+
 
     // -- Custom Crafting Logic --
 
@@ -129,6 +133,7 @@ public class MethListener implements Listener {
 
     // -- glass -> pure meth logic
 
+
     @EventHandler
     public void onAnvil(PlayerInteractEvent e){
         Player p = e.getPlayer();
@@ -151,7 +156,6 @@ public class MethListener implements Listener {
 
                 // Customisation
 
-                ItemStack meth1 = itemManager.create("n_methamphetamine");
                 ItemMeta meta = meth1.getItemMeta();
 
 
@@ -278,18 +282,22 @@ public class MethListener implements Listener {
 
     @EventHandler
     public void onEatMeth(PlayerItemConsumeEvent e){
+
+        Bukkit.getLogger().info("Cat 1: Consume Event Triggered!");
         Player p = e.getPlayer();
         ItemStack methItem = p.getInventory().getItemInMainHand();
 
 
-        // adding potion randomness
+        // adding potion randomnessw
 
         Random methRandom = new Random();
 
         double roll = methRandom.nextDouble();
 
-        if (methItem == null || methItem.getType() == Material.AIR) return;
-        if (methItem == itemManager.create("n_methamphetamine")){
+        if (methItem.getType() == Material.AIR) return;
+        if (itemManager.getItemId(methItem).equals("n_methamphetamine")){
+
+            Bukkit.getLogger().info("Cat 3: Meth Detected!");
 
             PotionEffect tuffNausea = new PotionEffect(PotionEffectType.NAUSEA, 400, 1);
             PotionEffect tuffBlindness = new PotionEffect(PotionEffectType.BLINDNESS, 400, 2);
@@ -316,10 +324,21 @@ public class MethListener implements Listener {
                 p.addPotionEffect(tuffPoison);
             }
 
-            uuidStore.put(p.getUniqueId(), p.getUniqueId());
+            uuidStore.put(p.getUniqueId(), "test");
 
         }
 
+
+    }
+
+    @EventHandler
+    public void onDamageEvent(EntityDamageEvent e){
+        Player damagedPlayer = (Player) e.getEntity();
+        UUID playerId = damagedPlayer.getUniqueId();
+
+        if (uuidStore.containsKey(playerId)){
+            Bukkit.getLogger().info("test");
+        }
 
     }
 

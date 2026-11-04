@@ -10,6 +10,7 @@
     import com.gfr.betterandbluer.recipes.*;
     import dev.jorel.commandapi.CommandAPI;
     import dev.jorel.commandapi.CommandAPIPaperConfig;
+    import org.bukkit.inventory.ItemStack;
     import org.bukkit.plugin.java.JavaPlugin;
 
     public final class BetterAndBluer extends JavaPlugin {
