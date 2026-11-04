@@ -299,15 +299,15 @@ public class MethListener implements Listener {
                 p.addPotionEffect(tuffNausea);
                 p.addPotionEffect(tuffBlindness);
             } else {
-                if (roll < 0.70){
+                if (methRandom.nextDouble() < 0.70){
                     p.addPotionEffect(tuffNausea);
                 }
-                else if (roll < 0.50){
+                else if (methRandom.nextDouble() < 0.50){
                     p.addPotionEffect(tuffBlindness);
                 }
             }
 
-            if (roll < 0.70){
+            if (methRandom.nextDouble() < 0.70){
                 p.addPotionEffect(tuffPoison);
             }
         }
