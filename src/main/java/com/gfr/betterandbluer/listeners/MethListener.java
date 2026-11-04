@@ -48,6 +48,8 @@ public class MethListener implements Listener {
         this.itemKey = new NamespacedKey(plugin, "test");
     }
 
+    private final Map<UUID, UUID> uuidStore = new HashMap<>();
+
     // -- Custom Crafting Logic --
 
 
@@ -279,6 +281,9 @@ public class MethListener implements Listener {
         Player p = e.getPlayer();
         ItemStack methItem = p.getInventory().getItemInMainHand();
 
+
+        // adding potion randomness
+
         Random methRandom = new Random();
 
         double roll = methRandom.nextDouble();
@@ -310,7 +315,12 @@ public class MethListener implements Listener {
             if (methRandom.nextDouble() < 0.70){
                 p.addPotionEffect(tuffPoison);
             }
+
+            uuidStore.put(p.getUniqueId(), p.getUniqueId());
+
         }
+
+
     }
 
 
