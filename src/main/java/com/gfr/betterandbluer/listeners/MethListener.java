@@ -59,6 +59,8 @@ public class MethListener implements Listener {
 
     private final Map<UUID, String> uuidStore = new HashMap<>();
     private final Map<UUID, Double> damageStorage = new HashMap<>();
+    private final Map<UUID, String> activeTasks = new HashMap<>();
+    private final Map<UUID, String> dumbSol = new HashMap<>();
 
 
     // -- Custom Crafting Logic --
@@ -347,6 +349,8 @@ public class MethListener implements Listener {
 
         if (uuidStore.containsKey(playerId)){
             e.setCancelled(true);
+            // ok im gonna try some genius stuff, may look not neat afs
+
 
             Bukkit.getLogger().info("Anti Damage Started.");
 
@@ -357,11 +361,28 @@ public class MethListener implements Listener {
                 damageStorage.put(playerId ,finalValue);
             } else {
                 damageStorage.put(playerId, damageValue);
+
+
+                new BukkitRunnable(){
+                    @Override
+                    public void run(){
+                        Bukkit.getLogger().info("Anti-Damage ended.");
+                        Double getDamage = damageStorage.get(playerId);
+                        uuidStore.remove(playerId);
+                        damagedPlayer.damage(getDamage);
+                        dumbSol.put(playerId, "test");
+                        damageStorage.remove(playerId);
+                        this.cancel();
+                    }
+                }.runTaskLater(plugin, 100L);
+
+
             }
 
             Bukkit.getLogger().info("Got player ID and set damage.");
 
 
+            /*if (!(activeTasks.containsKey(playerId))) return;
             new BukkitRunnable(){
                 @Override
                 public void run(){
@@ -369,9 +390,10 @@ public class MethListener implements Listener {
                     Double getDamage = damageStorage.get(playerId);
                     uuidStore.remove(playerId);
                     damagedPlayer.damage(getDamage);
+                    dumbSol.put(playerId, "test");
                     this.cancel();
                 }
-            }.runTaskLater(plugin, 100L);
+            }.runTaskLater(plugin, 100L);*/
         }
 
     }
