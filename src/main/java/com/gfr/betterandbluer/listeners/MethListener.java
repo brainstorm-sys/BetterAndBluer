@@ -1,6 +1,8 @@
 package com.gfr.betterandbluer.listeners;
 
 import com.gfr.betterandbluer.managers.ItemManager;
+import com.google.gson.internal.bind.util.ISO8601Utils;
+import dev.jorel.commandapi.executors.BukkitExecutionInfo;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.FoodProperties;
 import net.kyori.adventure.key.Key;
@@ -26,11 +28,15 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.scheduler.BukkitTask;
 import org.checkerframework.checker.units.qual.Current;
+import org.jetbrains.annotations.NotNull;
 
 import javax.naming.Name;
 import java.util.*;
@@ -52,6 +58,7 @@ public class MethListener implements Listener {
 
 
     private final Map<UUID, String> uuidStore = new HashMap<>();
+    private final Map<UUID, Double> damageStorage = new HashMap<>();
 
 
     // -- Custom Crafting Logic --
@@ -333,11 +340,38 @@ public class MethListener implements Listener {
 
     @EventHandler
     public void onDamageEvent(EntityDamageEvent e){
-        Player damagedPlayer = (Player) e.getEntity();
+
+        if (!(e.getEntity() instanceof Player damagedPlayer)) return;
         UUID playerId = damagedPlayer.getUniqueId();
+        Double damageValue = e.getDamage();
 
         if (uuidStore.containsKey(playerId)){
-            Bukkit.getLogger().info("test");
+            e.setCancelled(true);
+
+            Bukkit.getLogger().info("Anti Damage Started.");
+
+            if (e.getCause() == EntityDamageEvent.DamageCause.CUSTOM) return;
+
+            if (damageStorage.get(playerId) != null) {
+                Double finalValue = damageValue + damageStorage.get(playerId);
+                damageStorage.put(playerId ,finalValue);
+            } else {
+                damageStorage.put(playerId, damageValue);
+            }
+
+            Bukkit.getLogger().info("Got player ID and set damage.");
+
+
+            new BukkitRunnable(){
+                @Override
+                public void run(){
+                    Bukkit.getLogger().info("Anti-Damage ended.");
+                    Double getDamage = damageStorage.get(playerId);
+                    uuidStore.remove(playerId);
+                    damagedPlayer.damage(getDamage);
+                    this.cancel();
+                }
+            }.runTaskLater(plugin, 100L);
         }
 
     }
