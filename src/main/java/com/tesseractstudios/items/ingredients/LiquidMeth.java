@@ -14,7 +14,7 @@ public class LiquidMeth {
     }
 
     public void register() {
-        itemManager.register("liquidmeth", Material.PAPER, "goodfellows:ingredients/methliquid", mm.deserialize("Liquid Meth"),
+        itemManager.register("liquidmeth", Material.PAPER, "blockingbad:ingredients/methliquid", mm.deserialize("Liquid Meth"),
                 ItemManager.DataComponent.of(DataComponentTypes.MAX_STACK_SIZE, 32));
     }
 }

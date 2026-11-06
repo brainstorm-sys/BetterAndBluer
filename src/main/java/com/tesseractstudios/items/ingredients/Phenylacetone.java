@@ -14,7 +14,7 @@ public class Phenylacetone {
     }
 
     public void register() {
-        itemManager.register("phenylacetone", Material.GLASS_BOTTLE, "goodfellows:ingredients/phenylacetone", mm.deserialize("<color:#FCD05C><shadow:#473D24:1>Phenylacetone</shadow></color>"),
+        itemManager.register("phenylacetone", Material.GLASS_BOTTLE, "blockingbad:ingredients/phenylacetone", mm.deserialize("<color:#FCD05C><shadow:#473D24:1>Phenylacetone</shadow></color>"),
                 ItemManager.DataComponent.of(DataComponentTypes.MAX_STACK_SIZE, 1)
                 );
     }

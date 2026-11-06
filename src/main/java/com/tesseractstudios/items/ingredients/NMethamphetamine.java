@@ -18,7 +18,7 @@ public class NMethamphetamine {
     }
 
     public void register() {
-        itemManager.register("n_methamphetamine", Material.DRIED_KELP, "goodfellows:ingredients/n_methamphetamine", mm.deserialize("<b><gradient:#61C6EE:#A3DEFF:#61C6EE>Methamphetamine</gradient></b>"),
+        itemManager.register("n_methamphetamine", Material.DRIED_KELP, "blockingbad:ingredients/n_methamphetamine", mm.deserialize("<b><gradient:#61C6EE:#A3DEFF:#61C6EE>Methamphetamine</gradient></b>"),
                 ItemManager.DataComponent.of(DataComponentTypes.CONSUMABLE, Consumable.consumable()
                                 .animation(ItemUseAnimation.BOW)
                                 .hasConsumeParticles(false)

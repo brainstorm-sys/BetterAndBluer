@@ -13,6 +13,6 @@ public class PhenylaceticAcid {
     }
 
     public void register() {
-        itemManager.register("phenylacetic_acid", Material.PAPER, "goodfellows:ingredients/phenylacetic_acid", mm.deserialize("Phenylacetic Acid"));
+        itemManager.register("phenylacetic_acid", Material.PAPER, "blockingbad:ingredients/phenylacetic_acid", mm.deserialize("Phenylacetic Acid"));
     }
 }

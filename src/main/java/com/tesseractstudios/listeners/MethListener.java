@@ -326,7 +326,7 @@ public class MethListener implements Listener {
 
             // sound effects. I'm pretty bad at this actually
 
-            p.playSound(Sound.sound(Key.key("goodfellows", "crystal_smell"), Sound.Source.MASTER, 1f, 1f));
+            p.playSound(Sound.sound(Key.key("blockingbad", "crystal_smell"), Sound.Source.MASTER, 1f, 1f));
 
 
             p.sendMessage(MiniMessage.miniMessage().deserialize("<!i><gradient:#6179DD:#7754F4><shadow:#181E37:1>ɴ</shadow><shadow:#191D38:1>ᴜ</shadow><shadow:#191C38:1>ᴍ</shadow><shadow:#1A1B39:1>ʙ</shadow><shadow:#1A1A39:1> </shadow></gradient><gradient:#7754F4:#1FA4D7><shadow:#1B1A3A:1>ᴛ</shadow><shadow:#1C193B:1>ᴏ</shadow><shadow:#1C183B:1> </shadow><shadow:#1D173C:1>ᴅ</shadow><shadow:#1D163C:1>ᴀ</shadow><shadow:#1E153D:1>ᴍ</shadow><shadow:#1C173C:1>ᴀ</shadow><shadow:#19193B:1>ɢ</shadow><shadow:#171C3B:1>ᴇ</shadow><shadow:#141E3A:1> </shadow><shadow:#122039:1>ꜰ</shadow><shadow:#0F2238:1>ᴏ</shadow><shadow:#0D2538:1>ʀ</shadow><shadow:#0A2737:1> </shadow><shadow:#082936:1>1</shadow></gradient><gradient:#1FA4D7:#5BE3EB><shadow:#0A2B37:1>0</shadow><shadow:#0B2C37:1> </shadow><shadow:#0D2E38:1>ѕ</shadow><shadow:#0E2F38:1>ᴇ</shadow><shadow:#103139:1>ᴄ</shadow><shadow:#113339:1>ᴏ</shadow><shadow:#13343A:1>ɴ</shadow><shadow:#14363A:1>ᴅ</shadow><shadow:#16373B:1>ѕ</shadow><shadow:#17393B:1>.</shadow></gradient></!i>"));
@@ -429,7 +429,7 @@ public class MethListener implements Listener {
 
         if (p.hasCooldown(methDetect.getType())) return;
 
-        p.playSound(Sound.sound(Key.key("goodfellows", "crystal_sniff"), Sound.Source.MASTER, 1, 1));
+        p.playSound(Sound.sound(Key.key("blockingbad", "crystal_sniff"), Sound.Source.MASTER, 1, 1));
         methCooldwn.put(playerID, currentTime);
     }
 

@@ -14,7 +14,7 @@ public class Mercury {
     }
 
     public void register() {
-        itemManager.register("mercury", Material.PAPER, "goodfellows:ingredients/mercury", mm.deserialize("Mercury"),
+        itemManager.register("mercury", Material.PAPER, "blockingbad:ingredients/mercury", mm.deserialize("Mercury"),
                 ItemManager.DataComponent.of(DataComponentTypes.MAX_STACK_SIZE, 1));
     }
 }

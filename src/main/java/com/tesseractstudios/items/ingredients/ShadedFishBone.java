@@ -13,7 +13,7 @@ public class ShadedFishBone {
     }
 
     public void register() {
-        itemManager.register("shadedbone", Material.PAPER, "goodfellows:ingredients/shadedbone", Component.text("Shaded Fish Bone"));
+        itemManager.register("shadedbone", Material.PAPER, "blockingbad:ingredients/shadedbone", Component.text("Shaded Fish Bone"));
     }
 
 }

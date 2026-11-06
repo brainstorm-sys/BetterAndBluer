@@ -13,6 +13,6 @@ public class Alluminum {
     }
 
     public void register() {
-        itemManager.register("alluminum", Material.PAPER, "goodfellows:ingredients/alluminum", mm.deserialize("Aluminum"));
+        itemManager.register("alluminum", Material.PAPER, "blockingbad:ingredients/alluminum", mm.deserialize("Aluminum"));
     }
 }

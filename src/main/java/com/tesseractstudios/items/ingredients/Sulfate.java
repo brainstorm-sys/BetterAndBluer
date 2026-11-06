@@ -13,6 +13,6 @@ public class Sulfate {
     }
 
     public void register() {
-        itemManager.register("sulfate", Material.PAPER, "goodfellows:ingredients/sulfate", mm.deserialize("Sulfate"));
+        itemManager.register("sulfate", Material.PAPER, "blockingbad:ingredients/sulfate", mm.deserialize("Sulfate"));
     }
 }

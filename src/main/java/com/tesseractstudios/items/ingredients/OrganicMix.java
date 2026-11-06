@@ -13,6 +13,6 @@ public class OrganicMix {
     }
 
     public void register() {
-        itemManager.register("orgmix", Material.PAPER, "goodfellows:ingredients/orgmix", mm.deserialize("<color:#AEAEAE>Organic Mix</color>"));
+        itemManager.register("orgmix", Material.PAPER, "blockingbad:ingredients/orgmix", mm.deserialize("<color:#AEAEAE>Organic Mix</color>"));
     }
 }

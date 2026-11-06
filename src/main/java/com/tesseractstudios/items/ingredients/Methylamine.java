@@ -14,7 +14,7 @@ public class Methylamine {
     }
 
     public void register() {
-        itemManager.register("methylamine", Material.GLASS_BOTTLE, "goodfellows:ingredients/methylamine", mm.deserialize("<color:#ACACAC><shadow:#313C2E:1>Methylamine</shadow></color>"),
+        itemManager.register("methylamine", Material.GLASS_BOTTLE, "blockingbad:ingredients/methylamine", mm.deserialize("<color:#ACACAC><shadow:#313C2E:1>Methylamine</shadow></color>"),
                 ItemManager.DataComponent.of(DataComponentTypes.MAX_STACK_SIZE, 1));
     }
 }

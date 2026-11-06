@@ -13,6 +13,6 @@ public class FishBone {
     }
 
     public void register() {
-        itemManager.register("fish_bone", Material.PAPER, "goodfellows:ingredients/fish_bone", mm.deserialize("Fish Bone"));
+        itemManager.register("fish_bone", Material.PAPER, "blockingbad:ingredients/fish_bone", mm.deserialize("Fish Bone"));
     }
 }

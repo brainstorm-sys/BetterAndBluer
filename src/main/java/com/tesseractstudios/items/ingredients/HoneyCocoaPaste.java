@@ -12,7 +12,7 @@ public class HoneyCocoaPaste {
     }
 
     public void register() {
-        itemManager.register("honeycocoapaste", Material.PAPER, "goodfellows:ingredients/honeycocoapaste", mm.deserialize("Honey-Cocoa Paste"));
+        itemManager.register("honeycocoapaste", Material.PAPER, "blockingbad:ingredients/honeycocoapaste", mm.deserialize("Honey-Cocoa Paste"));
     }
 
 }
