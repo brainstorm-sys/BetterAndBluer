@@ -1,12 +1,10 @@
-package com.gfr.betterandbluer.recipes;
+package com.tesseractstudios.recipes;
 
-import com.gfr.betterandbluer.managers.ItemManager;
+import com.tesseractstudios.managers.ItemManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.block.BlastFurnace;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;

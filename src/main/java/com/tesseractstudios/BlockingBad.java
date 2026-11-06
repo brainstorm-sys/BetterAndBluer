@@ -1,22 +1,17 @@
-    package com.gfr.betterandbluer;
+    package com.tesseractstudios;
 
-    import com.gfr.betterandbluer.items.beverage.Beer;
-    import com.gfr.betterandbluer.items.beverage.Vodka;
-    import com.gfr.betterandbluer.items.beverage.Whisky;
-    import com.gfr.betterandbluer.items.drugs.Meth;
-    import com.gfr.betterandbluer.items.ingredients.*;
-    import com.gfr.betterandbluer.listeners.MethListener;
-    import com.gfr.betterandbluer.managers.ItemManager;
-    import com.gfr.betterandbluer.recipes.*;
+    import com.tesseractstudios.items.ingredients.*;
+    import com.tesseractstudios.listeners.MethListener;
+    import com.tesseractstudios.managers.ItemManager;
+    import com.tesseractstudios.recipes.MethRecipes;
     import dev.jorel.commandapi.CommandAPI;
     import dev.jorel.commandapi.CommandAPIPaperConfig;
-    import org.bukkit.inventory.ItemStack;
     import org.bukkit.plugin.java.JavaPlugin;
 
-    public final class BetterAndBluer extends JavaPlugin {
+    public final class BlockingBad extends JavaPlugin {
 
 
-        public static BetterAndBluer instance;
+        public static BlockingBad instance;
 
 
         @Override
@@ -39,11 +34,6 @@
 
             // ------ MANAGERS ------
             ItemManager itemManager = new ItemManager(this);
-
-            // ------ ITEMS --------
-
-            // -- DRUGS --
-            new Meth(itemManager).register();
 
 
             // -- INGREDIENTS --

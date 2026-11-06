@@ -1,20 +1,20 @@
-package com.gfr.betterandbluer.items.ingredients;
+package com.tesseractstudios.items.ingredients;
 
-import com.gfr.betterandbluer.managers.ItemManager;
+import com.tesseractstudios.managers.ItemManager;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 
-public class Mercury {
+public class PhenylAceticAcidSolution {
     private final ItemManager itemManager;
     private final MiniMessage mm = MiniMessage.miniMessage();
 
-    public Mercury(ItemManager itemManager) {
+    public PhenylAceticAcidSolution(ItemManager itemManager) {
         this.itemManager = itemManager;
     }
 
     public void register() {
-        itemManager.register("mercury", Material.PAPER, "goodfellows:ingredients/mercury", mm.deserialize("Mercury"),
+        itemManager.register("phenylacetic_acidsolution", Material.NETHER_WART, "goodfellows:ingredients/phenylacetic_acidsolution", mm.deserialize("P2P Solution"),
                 ItemManager.DataComponent.of(DataComponentTypes.MAX_STACK_SIZE, 1));
     }
 }

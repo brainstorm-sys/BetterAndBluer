@@ -1,8 +1,6 @@
-package com.gfr.betterandbluer.listeners;
+package com.tesseractstudios.listeners;
 
-import com.gfr.betterandbluer.managers.ItemManager;
-import com.google.gson.internal.bind.util.ISO8601Utils;
-import dev.jorel.commandapi.executors.BukkitExecutionInfo;
+import com.tesseractstudios.managers.ItemManager;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.FoodProperties;
 import net.kyori.adventure.key.Key;
@@ -10,39 +8,25 @@ import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.block.Block;
-import org.bukkit.block.BrewingStand;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BrewingStartEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.inventory.BrewEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
-import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.components.UseCooldownComponent;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitScheduler;
-import org.bukkit.scheduler.BukkitTask;
-import org.checkerframework.checker.units.qual.Current;
-import org.jetbrains.annotations.NotNull;
 
-import javax.naming.Name;
 import java.util.*;
 
 
@@ -64,6 +48,7 @@ public class MethListener implements Listener {
     private final Map<UUID, String> uuidStore = new HashMap<>();
     private final Map<UUID, Double> damageStorage = new HashMap<>();
     private final Map<UUID, Double> playerSave = new HashMap<>();
+    private final Map<UUID, Long> methCooldwn = new HashMap<>();
 
 
     // -- Custom Crafting Logic wa--
@@ -380,6 +365,12 @@ public class MethListener implements Listener {
 
     }
 
+
+    // IMP FUNCTIONALITY
+
+
+
+
     @EventHandler
     public void onDamageEvent(EntityDamageEvent e){
 
@@ -423,6 +414,23 @@ public class MethListener implements Listener {
 
         }
 
+    }
+// uhh fixing sound:
+
+    @EventHandler
+    public void onInteract(PlayerInteractEvent e){
+        Player p = e.getPlayer();
+        UUID playerID = p.getUniqueId();
+        ItemStack methDetect = p.getInventory().getItemInMainHand();
+        long cooldownMS = 2000;
+        Long currentTime = System.currentTimeMillis();
+
+        if (!(itemManager.getItemId(methDetect).equals("n_methamphetamine"))) return;
+
+        if (p.hasCooldown(methDetect.getType())) return;
+
+        p.playSound(Sound.sound(Key.key("goodfellows", "crystal_sniff"), Sound.Source.MASTER, 1, 1));
+        methCooldwn.put(playerID, currentTime);
     }
 
 

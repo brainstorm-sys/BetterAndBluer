@@ -1,4 +1,4 @@
-package com.gfr.betterandbluer.managers;
+package com.tesseractstudios.managers;
 
 import io.papermc.paper.datacomponent.DataComponentType;
 import net.kyori.adventure.text.Component;

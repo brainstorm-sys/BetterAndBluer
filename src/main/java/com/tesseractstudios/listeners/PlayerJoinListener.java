@@ -1,4 +1,4 @@
-package com.gfr.betterandbluer.listeners;
+package com.tesseractstudios.listeners;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -1,8 +1,7 @@
-package com.gfr.betterandbluer.items.ingredients;
+package com.tesseractstudios.items.ingredients;
 
-import com.gfr.betterandbluer.managers.ItemManager;
+import com.tesseractstudios.managers.ItemManager;
 import io.papermc.paper.datacomponent.DataComponentTypes;
-import io.papermc.paper.datacomponent.item.Consumable;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 
