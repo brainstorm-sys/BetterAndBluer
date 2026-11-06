@@ -10,6 +10,7 @@ import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -25,8 +26,11 @@ import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.components.UseCooldownComponent;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -59,12 +63,40 @@ public class MethListener implements Listener {
 
     private final Map<UUID, String> uuidStore = new HashMap<>();
     private final Map<UUID, Double> damageStorage = new HashMap<>();
-    private final Map<UUID, String> activeTasks = new HashMap<>();
-    private final Map<UUID, String> dumbSol = new HashMap<>();
+    private final Map<UUID, Double> playerSave = new HashMap<>();
 
 
-    // -- Custom Crafting Logic --
+    // -- Custom Crafting Logic wa--
 
+
+    @EventHandler
+    public void onJoinEvent(PlayerJoinEvent e){
+        Bukkit.getLogger().info("Join event detected");
+        Player p = e.getPlayer();
+        UUID playerUUID = p.getUniqueId();
+        Double getDoubleTest = playerSave.get(playerUUID);
+
+        if (!(playerSave.containsKey(playerUUID))) return;
+
+        new BukkitRunnable(){
+            public void run(){
+                Bukkit.getLogger().info("Join damage applied");
+                p.damage(getDoubleTest);
+                playerSave.remove(playerUUID);
+            }
+        }.runTaskLater(plugin, 20L);
+    }
+
+    @EventHandler
+    public void onLeaveEvent(PlayerQuitEvent e){
+        Bukkit.getLogger().info("Player Leave event detected");
+        Player p = e.getPlayer();
+        UUID playerID = p.getUniqueId();
+
+        if(!(uuidStore.containsKey(playerID))) return;
+        Bukkit.getLogger().info("Player uuid get done");
+        playerSave.put(playerID, damageStorage.get(playerID));
+    }
 
     @EventHandler
     public void onGrindStoneClick(PlayerInteractEvent e) {
@@ -179,9 +211,11 @@ public class MethListener implements Listener {
                         MiniMessage.miniMessage().deserialize("<!i><color:#6179DD>* 75% ᴄʜᴀɴᴄᴇ ᴏꜰ ᴘᴏɪѕᴏɴ</color></!i>"),
                         MiniMessage.miniMessage().deserialize("<!i><color:#6179DD>* ѕᴛʀᴇɴɢᴛʜ 2 + ѕᴘᴇᴇᴅ 1</color></!i>"),
                         Component.text(""),
-                        MiniMessage.miniMessage().deserialize("<!i><color:#61BADD>ᴛᴀᴋᴇ ᴇɴᴏᴜɢʜ ᴛᴏ ʙᴇᴄᴏᴍᴇ ᴘᴀʀᴀɴᴏɪᴅ.</color></!i>")
+                        MiniMessage.miniMessage().deserialize("<!i><color:#61BADD>ᴏꜰꜰᴇʀѕ ɪɴᴠɪɴᴄɪʙɪʟɪᴛʏ ꜰᴏʀ ᴀ ʙɪᴛ.</color></!i>")
 
                 ));
+                meth1.setItemMeta(meta);
+
 
                 meth1.setData(DataComponentTypes.FOOD,
                         FoodProperties.food()
@@ -190,9 +224,6 @@ public class MethListener implements Listener {
                                 .saturation(0)
                                 .build()
                         );
-
-                meth1.setItemMeta(meta);
-
 
                 //
 
@@ -306,6 +337,15 @@ public class MethListener implements Listener {
         if (methItem.getType() == Material.AIR) return;
         if (itemManager.getItemId(methItem).equals("n_methamphetamine")){
 
+            p.setCooldown(itemManager.create("n_methamphetamine"), 40);
+
+            // sound effects. I'm pretty bad at this actually
+
+            p.playSound(Sound.sound(Key.key("goodfellows", "crystal_smell"), Sound.Source.MASTER, 1f, 1f));
+
+
+            p.sendMessage(MiniMessage.miniMessage().deserialize("<!i><gradient:#6179DD:#7754F4><shadow:#181E37:1>ɴ</shadow><shadow:#191D38:1>ᴜ</shadow><shadow:#191C38:1>ᴍ</shadow><shadow:#1A1B39:1>ʙ</shadow><shadow:#1A1A39:1> </shadow></gradient><gradient:#7754F4:#1FA4D7><shadow:#1B1A3A:1>ᴛ</shadow><shadow:#1C193B:1>ᴏ</shadow><shadow:#1C183B:1> </shadow><shadow:#1D173C:1>ᴅ</shadow><shadow:#1D163C:1>ᴀ</shadow><shadow:#1E153D:1>ᴍ</shadow><shadow:#1C173C:1>ᴀ</shadow><shadow:#19193B:1>ɢ</shadow><shadow:#171C3B:1>ᴇ</shadow><shadow:#141E3A:1> </shadow><shadow:#122039:1>ꜰ</shadow><shadow:#0F2238:1>ᴏ</shadow><shadow:#0D2538:1>ʀ</shadow><shadow:#0A2737:1> </shadow><shadow:#082936:1>1</shadow></gradient><gradient:#1FA4D7:#5BE3EB><shadow:#0A2B37:1>0</shadow><shadow:#0B2C37:1> </shadow><shadow:#0D2E38:1>ѕ</shadow><shadow:#0E2F38:1>ᴇ</shadow><shadow:#103139:1>ᴄ</shadow><shadow:#113339:1>ᴏ</shadow><shadow:#13343A:1>ɴ</shadow><shadow:#14363A:1>ᴅ</shadow><shadow:#16373B:1>ѕ</shadow><shadow:#17393B:1>.</shadow></gradient></!i>"));
+
             Bukkit.getLogger().info("Cat 3: Meth Detected!");
 
             PotionEffect tuffNausea = new PotionEffect(PotionEffectType.NAUSEA, 400, 1);
@@ -360,6 +400,7 @@ public class MethListener implements Listener {
                 Double finalValue = damageValue + damageStorage.get(playerId);
                 damageStorage.put(playerId ,finalValue);
             } else {
+
                 damageStorage.put(playerId, damageValue);
 
 
@@ -370,30 +411,16 @@ public class MethListener implements Listener {
                         Double getDamage = damageStorage.get(playerId);
                         uuidStore.remove(playerId);
                         damagedPlayer.damage(getDamage);
-                        dumbSol.put(playerId, "test");
                         damageStorage.remove(playerId);
                         this.cancel();
                     }
-                }.runTaskLater(plugin, 100L);
+                }.runTaskLater(plugin, 200L);
 
 
             }
 
             Bukkit.getLogger().info("Got player ID and set damage.");
 
-
-            /*if (!(activeTasks.containsKey(playerId))) return;
-            new BukkitRunnable(){
-                @Override
-                public void run(){
-                    Bukkit.getLogger().info("Anti-Damage ended.");
-                    Double getDamage = damageStorage.get(playerId);
-                    uuidStore.remove(playerId);
-                    damagedPlayer.damage(getDamage);
-                    dumbSol.put(playerId, "test");
-                    this.cancel();
-                }
-            }.runTaskLater(plugin, 100L);*/
         }
 
     }

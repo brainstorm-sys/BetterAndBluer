@@ -23,6 +23,7 @@ public class NMethamphetamine {
                                 .animation(ItemUseAnimation.BOW)
                                 .hasConsumeParticles(false)
                                 .consumeSeconds(1f)
+                                .sound(Key.key("goodfellows", "crystal_sniff"))
                         .build())
                 );
     }
